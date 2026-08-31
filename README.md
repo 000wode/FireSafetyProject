@@ -16,4 +16,9 @@
 - [采集脚本](code/day15_collect.py)
 - [分类器](code/day16_real_classifier.py)
 > 第一次训练准确率 83%，清洗标签污染后提升至 100% —— 数据质量决定模型质量。
+
+## Python 实时监控端
+![仪表盘](images/dashboard_normal.png)
+> tkinter 桌面应用：通过串口实时显示烟雾/火焰/温度/湿度，与 Arduino 联动报警
+演示视频：[https://www.bilibili.com/video/BV1sstM6KEAL/?spm_id_from=333.1387.upload.video_card.click&vd_source=ffb1d966e4811d2e76971d9f13d774d3]
 > 设计者：李凌航 | 2026.08
