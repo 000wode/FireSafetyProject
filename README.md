@@ -37,4 +37,4 @@
 
 ## 小车入口
 
-键盘遥控小车的接线表、依赖、运行命令和按键说明见 [`code/car_control.ino/README.md`](code/car_control.ino/README.md)。该文件中的接线信息按代码推导，硬件未复测。
+键盘遥控小车已拆分到独立仓库：[`000wode/keyboard-car-control`](https://github.com/000wode/keyboard-car-control)。请在新仓库查看固件、Python 上位机、接线表、依赖、运行命令和按键说明；接线信息按代码推导，硬件未复测。
