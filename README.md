@@ -27,7 +27,8 @@
 - 训练脚本、T8 复现输出及混淆矩阵截图用于核对历史口径，不代表部署质量。
 
 ## Python 实时监控端
-![仪表盘](images/dashboard_normal.png)
+![仪表盘正常状态](images/QQ20260901-060752.png)
+![仪表盘报警状态](images/QQ20260901-060817.png)
 > tkinter 桌面应用：通过串口实时显示烟雾/火焰/温度/湿度，与 Arduino 联动报警。烟雾、火焰、温度进入 Arduino 融合评分（0.4/0.4/0.2），湿度只采集、上传和展示，不进入融合评分。
 演示视频：[https://www.bilibili.com/video/BV1sstM6KEAL/?spm_id_from=333.1387.upload.video_card.click&vd_source=ffb1d966e4811d2e76971d9f13d774d3]
 
