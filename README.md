@@ -15,13 +15,20 @@
 - [数据集](data/)：正常 30 条 + 火灾事件 29 条（标签经清洗）
 - [采集脚本](code/day15_collect.py)
 - [分类器](code/day16_real_classifier.py)
-> 历史终端输出记录：污染标签版 accuracy 为 0.83；清洗标签版固定留出测试为 18/18 命中。标签由阈值规则生成，样本为 59 条单次采集记录，结果只属于小型原型，不能写成泛化准确率。
+> 历史终端输出记录：污染标签版 accuracy 为 0.83；清洗标签版按 `train_test_split(test_size=0.3, random_state=42, stratify=y)` 划分为 41 条训练、18 条固定留出测试，结果为 18/18 命中。标签由 `smoke > 100 OR flame < 600` 的阈值规则生成，存在循环标注风险；样本为 59 条单次采集记录，无原始采集元数据，结果只属于小型原型，不能写成泛化准确率。
 
 随机森林仅用于 Python 离线训练、分类分析与验证，不参与实时报警。实时报警由 Arduino 四级状态机独立完成。
 
+离线数据审计与后续验证协议：
+
+- `data/real_sensor_data.csv` 与 `data/real_sensor_data_fire.csv` 合计 59 条记录。
+- 清洗后标签分布为正常 37、火灾 22；训练 41、固定留出测试 18。
+- 当前没有独立人工标注、交叉验证、时间切分或跨场景测试；后续需按场次或事件分组，保留失败案例和独立标签。
+- 训练脚本、T8 复现输出及混淆矩阵截图用于核对历史口径，不代表部署质量。
+
 ## Python 实时监控端
 ![仪表盘](images/dashboard_normal.png)
-> tkinter 桌面应用：通过串口实时显示烟雾/火焰/温度/湿度，与 Arduino 联动报警
+> tkinter 桌面应用：通过串口实时显示烟雾/火焰/温度/湿度，与 Arduino 联动报警。烟雾、火焰、温度进入 Arduino 融合评分（0.4/0.4/0.2），湿度只采集、上传和展示，不进入融合评分。
 演示视频：[https://www.bilibili.com/video/BV1sstM6KEAL/?spm_id_from=333.1387.upload.video_card.click&vd_source=ffb1d966e4811d2e76971d9f13d774d3]
 
 ## 运行记录复核
@@ -37,4 +44,4 @@
 
 ## 小车入口
 
-键盘遥控小车已拆分到独立仓库：[`000wode/keyboard-car-control`](https://github.com/000wode/keyboard-car-control)。请在新仓库查看固件、Python 上位机、接线表、依赖、运行命令和按键说明；接线信息按代码推导，硬件未复测。
+键盘遥控小车已拆分到独立仓库：[`000wode/keyboard-car-control`](https://github.com/000wode/keyboard-car-control)。请在新仓库查看固件、Python 上位机、接线表、依赖、运行命令和按键说明。实物接线经用户确认，控制引脚已与代码逐项核对；当前硬件不在身边，未做通电复测，逐项动作复测记录待硬件可及后补。
